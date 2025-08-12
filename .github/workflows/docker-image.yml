@@ -17,12 +17,12 @@ jobs:
 
       - name: Build Docker image
         run: docker compose -f docker-compose.yml build
-      - name: Build Docker running
+      - name: Build Docker running compose
         run: docker compose -f docker-compose.yml up -d
-      - name: rerun docker
+      - name: re-run docker compose
         run: docker compose -f docker-compose.yml up -d
-      - name: Build Docker image
-        run: docker ps    
+      - name: checking Docker running containers
+        run: docker ps
       - name: Wait for frontend
         run: |
           for i in {1..15}; do
