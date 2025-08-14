@@ -11,11 +11,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: docker compose running
-        run: docker compose -f docker-compose.yml up -d
 
+      - name: Build Docker image
+        run: docker compose -f docker-compose.yml build
       - name: Build Docker running compose
-        run: docker ps
+        run: docker compose -f docker-compose.yml up -d
       - name: re-run docker compose
         run: docker compose -f docker-compose.yml up -d
       - name: checking Docker running containers
@@ -38,7 +38,7 @@ jobs:
           echo "Backend is up!"
           exit 0
           fi
-          echo "Waiting for backend..."
+          echo "Waiting for backend`..."
           sleep 3
           done
           echo "Backend failed to start" && exit 1
