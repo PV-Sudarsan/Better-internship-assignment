@@ -13,9 +13,11 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
-        run: docker compose -f docker-compose.yml build
+        run: docker-compose -f docker-compose.yml build
       - name: Build Docker running compose
         run: docker ps
+      - name: re-run docker compose
+        run: docker-compose -f docker-compose.yml up -d
       - name: checking Docker running containers
         run: docker ps
       - name: Wait for frontend
