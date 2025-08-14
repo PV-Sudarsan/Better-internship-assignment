@@ -20,25 +20,4 @@ jobs:
         run: docker compose -f docker-compose.yml up -d
       - name: checking Docker running containers
         run: docker ps
-      - name: Wait for frontend
-        run: |
-          for i in {1..15}; do
-          if curl -s http://localhost:5173 > /dev/null; then
-          echo "Frontend is up!"
-          exit 0
-          fi
-          echo "Waiting for frontend..."
-          sleep 3
-          done
-          echo "Frontend failed to start" && exit 1
-      - name: Wait for backend
-        run: |
-          for i in {1..15}; do
-          if curl -s http://localhost:8082 > /dev/null; then
-          echo "Backend is up!"
-          exit 0
-          fi
-          echo "Waiting for backend..."
-          sleep 3
-          done
-          echo "Backend failed to start" && exit 1
+
